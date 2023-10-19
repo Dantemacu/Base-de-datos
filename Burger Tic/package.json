@@ -1,0 +1,16 @@
+{
+  "name": "burger-tic",
+  "version": "1.0.0",
+  "description": "burger-tic",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.15"
+  }
+}
