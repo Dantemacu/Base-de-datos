@@ -9,6 +9,9 @@ app.get('/menu', (req, res) => {
     res.json(menu);
 });
 
+
+
+
 //Crear un endpoint GET /menu/:id que devuelva el plato con el id indicado.
 app.get('/menu/:id', (req, res) => {
     const id = parseInt(req.params.id);
@@ -40,8 +43,8 @@ app.get('/postres', (req, res) => {
 //Crear un endpoint POST /pedido que reciba un array de id's de platos y devuelva el precio total del pedido. El array de platos debe ser pasado en el cuerpo de la petición. 
 app.post('/pedido', (req, res) => {
     const { productos } = req.body;
-    if (!Array.isArray(productos)) {
-        return res.status(400).json('La solicitud debe incluir un array de platos');
+    if (!Array.isArray(productos) || productos.length === 0) {
+        return res.status(400).json('La solicitud debe incluir un array de platos o al menos un plato');
     }
     const pedido = productos.map(plato => {
         const menuPlato = menu.find(item => item.id === plato.id);
@@ -54,7 +57,7 @@ app.post('/pedido', (req, res) => {
 
     const total = pedido.reduce((acc, subtotal) => acc + subtotal, 0);
 
-    res.json('El total de su pedido es: $' +total); 
+    res.json({ msg: 'Pedido recibido', precio: total }); 
 
 
 });
